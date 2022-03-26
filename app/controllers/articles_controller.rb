@@ -18,6 +18,7 @@ class ArticlesController < ApplicationController
   def create
     # render plain: params[:article] -this just renders in browser
     @article = Article.new(article_params) #@book = Book.new(params.require(:book).permit(:title,:description))
+    @article.user = User.first
     #render plain: @article.inspect
     if @article.save
       flash[:notice] = "Article was created sucessfully"
