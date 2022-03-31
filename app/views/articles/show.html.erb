@@ -11,8 +11,10 @@
             </div>
             <div class="card-body">
               <p class="card-text">  <%= simple_format(@article.description) %></p>
+              <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
               <button type="button" class="btn btn-outline-info"><%= link_to 'Edit' , edit_article_path(@article) %></button>
               <button type="button" class="btn btn-outline-danger"><%= link_to 'Delete' , article_path(@article.id), method: :delete, data:{confirm:"Are you sure?"} %></button>
+              <% end %>
             </div>
             <div class="card-footer text-muted">
               <small>Created <%= time_ago_in_words(@article.created_at) %> ago, edited <%= time_ago_in_words(@article.updated_at) %></small>
